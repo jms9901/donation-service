@@ -10,16 +10,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+@Table(name = "uuser")
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //DB테이블 컬럼과 1ㄷ1 매칭
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //DB테이블 컬럼과 1:1 매칭
+    @Column(name= "user_id")
     private Long id;
 
     private String email;
+    private String name;
     private String password;
-
-
 
 
 
