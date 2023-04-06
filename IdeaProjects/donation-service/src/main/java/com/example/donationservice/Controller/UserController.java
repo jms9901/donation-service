@@ -3,10 +3,7 @@ package com.example.donationservice.Controller;
 import com.example.donationservice.Dto.UserRequest;
 import com.example.donationservice.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // 내 콩 어디나 놓지....?
 
@@ -19,10 +16,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("ping")
+    /**@GetMapping("ping")
     public String ping(){
         return "pong!!!";
-    }
+    }*/
 
     @PostMapping("/api/join_user")
     public Long register(@RequestBody UserRequest req){
@@ -33,5 +30,12 @@ public class UserController {
 
     }
 
+    @GetMapping("/api/login")
+    public String login (@RequestBody UserRequest req) {
+
+        String loginID = userService.login(req);
+
+        return loginID;
+    }
 
 }

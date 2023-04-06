@@ -1,15 +1,21 @@
 package com.example.donationservice.Exception;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class ErrorResponse {
-    private int status;
+    private String errorCode;
+    private String timestamp;
     private String message;
 
     public ErrorResponse(ErrorCode errorCode) {
-        this.status = errorCode.getStatus();
+        this.errorCode = errorCode.name();
+        this.timestamp = LocalDateTime.now().toString();
         this.message = errorCode.getMessage();
     }
+
 }

@@ -10,10 +10,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(EmailoverlapException.class)
-    public ResponseEntity<ErrorResponse> handleEmailoverlapException(EmailoverlapException ex){
-        log.error("handleEmailoverlapException",ex);
+    @ExceptionHandler(EmailOverlapException.class)
+    public ResponseEntity<ErrorResponse> handleEmailOverlapException(EmailOverlapException ex) {
         ErrorResponse response = new ErrorResponse(ex.getErrorCode());
         return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
+
+    @ExceptionHandler(EmailNullException.class)
+    public ResponseEntity<ErrorResponse> handleEmailNullException(EmailNullException ex) {
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(PasswordNullException.class)
+    public ResponseEntity<ErrorResponse> handlePasswordNullException(PasswordNullException ex) {
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
+
 }
