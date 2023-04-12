@@ -7,6 +7,7 @@ import com.example.donationservice.Exception.EmailOverlapException;
 import com.example.donationservice.Exception.ErrorCode;
 import com.example.donationservice.Exception.PasswordNullException;
 import com.example.donationservice.Repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,9 @@ public class UserService {
     }
 
     // 조건문 사용해야......
-    public String login(UserRequest req) {
+    public String login(UserRequest req, HttpSession session) {
+
+
 
         String email = req.getEmail();
         String password = req.getPassword();
@@ -61,7 +64,10 @@ public class UserService {
             throw new PasswordNullException(ErrorCode.PASSWORD_NULL);
         }
 
+
+        session.setAttribute("user", loginUser);
         return loginUser.getName();
+
 
     }
 
