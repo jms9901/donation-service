@@ -2,6 +2,7 @@ package com.example.donationservice.Controller;
 
 import com.example.donationservice.Dto.UserRequest;
 import com.example.donationservice.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/api/login")
-    public String login (@RequestBody UserRequest req) {
+    public String login (@RequestBody UserRequest req, HttpSession session) {
 
-        String loginID = userService.login(req);
+        String loginID = userService.login(req, session);
 
         return loginID;
     }
